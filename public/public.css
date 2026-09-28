@@ -93,3 +93,8 @@ body.public { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe 
   .pub-two-col { grid-template-columns: 1fr; }
   .event-card { flex-direction: column; }
 }
+
+.quote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.quote { background: #fff; border-left: 4px solid #00509e; padding: 1.5rem; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.quote p { margin: 0 0 1rem; color: #2d3748; font-style: italic; line-height: 1.6; }
+.quote-author { font-size: 0.85rem; color: #718096; font-weight: 600; }

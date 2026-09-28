@@ -2,73 +2,59 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <h1>Shaping the Future of Leisure Marine in MENA</h1>
-    <p class="hero-sub">LMA MENA unites marinas, yacht builders, service providers, and marine businesses across the Middle East and North Africa.</p>
+    <h1>Advocating for the Leisure Marine Industry Across MENA</h1>
+    <p class="hero-sub">The Leisure Marine Association represents marinas, boat and yacht builders, service providers, and equipment suppliers across the Middle East &amp; North Africa.</p>
     <div class="hero-actions">
-      <a href="/apply" class="pub-btn pub-btn-primary">Become a Member</a>
-      <a href="/about" class="pub-btn pub-btn-ghost">Learn More</a>
+      <a href="/apply" class="pub-btn pub-btn-primary pub-btn-large">Become a Member</a>
+      <a href="#about" class="pub-btn pub-btn-ghost pub-btn-large">Learn More</a>
     </div>
   </div>
 </section>
 
-<section class="pub-section">
-  <div class="container">
-    <h2 class="section-title">Why Join LMA MENA</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <div class="feature-icon">⚓</div>
-        <h3>Industry Network</h3>
-        <p>Connect with marinas, shipyards, brokers, suppliers, and service providers across the region.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📢</div>
-        <h3>Advocacy &amp; Voice</h3>
-        <p>Full voting rights and eligibility to stand for the board or committees.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🌊</div>
-        <h3>Events &amp; Access</h3>
-        <p>Attend the Annual Marine Expo, member-only networking nights, and regional forums.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📈</div>
-        <h3>Market Visibility</h3>
-        <p>Featured in the members directory, newsletter, and website — with the right to use the LMA logo.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📚</div>
-        <h3>Resources</h3>
-        <p>Industry reports, regulatory updates, and practical guides for marine businesses.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🤝</div>
-        <h3>Committees</h3>
-        <p>Participate in Events, Membership, and Marketing committees that steer the Association.</p>
-      </div>
+<section class="pub-section" id="about">
+  <div class="container pub-two-col">
+    <div>
+      <h2>About the Leisure Marine Association</h2>
+      <p>LMA MENA is a dedicated advocate for the regional marine industry — representing marinas, boat and yacht manufacturers, service providers, and equipment suppliers.</p>
+      <p>Our core objective is to promote and facilitate boat and yacht ownership and usage in the region, while advocating for our members and the broader marine industry.</p>
+      <p><a href="/about" class="pub-btn">Read More</a></p>
+    </div>
+    <div>
+      <h3>Founding &amp; Recognition</h3>
+      <p>Established in 2020 under the auspices of the Dubai Chamber of Commerce, officially recognized at the Dubai Association Centre.</p>
+      <h3>Scope &amp; Focus</h3>
+      <p>Our focus extends beyond the UAE to encompass the GCC and the wider MENA region, addressing diverse regional challenges.</p>
+      <h3>Membership</h3>
+      <p>We offer <strong>full membership</strong> for marine trade professionals and <strong>associate membership</strong> for enthusiasts — fostering inclusivity across the industry.</p>
     </div>
   </div>
 </section>
 
 <section class="pub-section pub-section-alt">
   <div class="container">
-    <h2 class="section-title">Featured Members</h2>
-    <div class="pub-member-grid">
-      <% featuredMembers.forEach(m => { %>
-        <div class="pub-member-card">
-          <div class="pub-member-logo">
-            <% if (m.logo_url) { %>
-              <img src="<%= m.logo_url %>" alt="<%= m.company %>">
-            <% } else { %>
-              <span class="pub-member-initials"><%= m.company.split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase() %></span>
-            <% } %>
-          </div>
-          <strong><%= m.company %></strong>
-          <span class="pub-member-meta"><%= m.industry %> · <%= m.country %></span>
-        </div>
-      <% }) %>
-    </div>
-    <div style="text-align:center;margin-top:2rem">
-      <a href="/public-members" class="pub-btn">View All Members</a>
+    <h2 class="section-title">Membership Options</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Full Membership</h3>
+        <p>For companies actively involved in the leisure marine industry with a specific marine activity on their trade license.</p>
+        <ul class="pub-list">
+          <li>Access to all benefits</li>
+          <li>Full voting rights</li>
+          <li>Eligible to stand for election to the board or committees</li>
+          <li>Right to use the LMA logo</li>
+        </ul>
+        <p><a href="/apply" class="pub-btn pub-btn-primary">Apply Now</a></p>
+      </div>
+      <div class="feature">
+        <h3>Associate Membership</h3>
+        <p>For enthusiasts and non-trade supporters who wish to be part of the community and support the industry.</p>
+        <ul class="pub-list">
+          <li>Access to member events and networking</li>
+          <li>Newsletter and industry updates</li>
+          <li>Non-voting community member</li>
+        </ul>
+        <p><a href="/contact" class="pub-btn">Enquire</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -76,31 +62,56 @@
 <section class="pub-section">
   <div class="container">
     <h2 class="section-title">Upcoming Events</h2>
-    <div class="event-grid">
-      <% upcomingEvents.forEach(e => { %>
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day"><%= new Date(e.date).getDate() %></span>
-            <span class="event-month"><%= new Date(e.date).toLocaleString('en', { month: 'short' }) %></span>
-          </div>
-          <div class="event-info">
-            <h3><%= e.title %></h3>
-            <p class="event-loc">📍 <%= e.location %></p>
-            <p><%= e.description %></p>
-          </div>
+    <% if (upcomingEvents.length) { %>
+      <% const e = upcomingEvents[0]; %>
+      <div class="event-card event-card-large">
+        <div class="event-date">
+          <span class="event-day"><%= new Date(e.date).getDate() %></span>
+          <span class="event-month"><%= new Date(e.date).toLocaleString('en', { month: 'short' }) %></span>
         </div>
-      <% }) %>
+        <div class="event-info">
+          <h3><%= e.title %></h3>
+          <p class="event-loc">📍 <%= e.location %></p>
+          <p><%= e.description %></p>
+          <p style="margin-top:1rem">
+            <a href="/public-events" class="pub-btn pub-btn-primary">All Events</a>
+          </p>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="pub-section pub-section-alt">
+  <div class="container">
+    <h2 class="section-title">Endorsements</h2>
+    <p style="text-align:center;max-width:600px;margin:0 auto 2rem;color:#4a5568">What our members say about the Association.</p>
+    <div class="quote-grid">
+      <div class="quote">
+        <p>"Moving to the UAE was a big step into the unknown. The LMA gave me an incredibly warm welcome and it's been great to put faces behind the emails through all the meetings and events."</p>
+        <div class="quote-author">— Jochem E., Operations Executive</div>
+      </div>
+      <div class="quote">
+        <p>"LMA's influence on the industry is profound, promoting collaboration and sustainable practices that raise operational standards across the region."</p>
+        <div class="quote-author">— Bashar M., Marketing Manager</div>
+      </div>
+      <div class="quote">
+        <p>"We're committed to promoting Dubai as a premier charter destination and collaborating with the Association to enhance the appeal for foreign vessels."</p>
+        <div class="quote-author">— Carole M., General Director</div>
+      </div>
+      <div class="quote">
+        <p>"As a member, we've seen firsthand the positive impact of LMA initiatives on the leisure marine industry in the UAE."</p>
+        <div class="quote-author">— Karim F., Partner</div>
+      </div>
     </div>
-    <div style="text-align:center;margin-top:2rem">
-      <a href="/public-events" class="pub-btn">All Events</a>
-    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:0.85rem;color:#718096">Placeholder quotes for demo purposes — real testimonials will be sourced with member permission.</p>
   </div>
 </section>
 
 <section class="pub-cta">
   <div class="container">
-    <h2>Ready to Join the Association?</h2>
-    <p>Applications are reviewed by our Membership Committee. Full voting rights and the ability to stand for election are available to qualifying members.</p>
+    <h2>Become a Member</h2>
+    <p>Join marinas, boat builders, brokers, suppliers, and service providers shaping the leisure marine industry across MENA.</p>
     <a href="/apply" class="pub-btn pub-btn-primary pub-btn-large">Apply for Membership</a>
   </div>
 </section>
