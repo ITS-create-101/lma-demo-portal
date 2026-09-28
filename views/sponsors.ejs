@@ -1,0 +1,35 @@
+<%- include('header') %>
+<h2>Sponsors</h2>
+<p><strong>Total sponsorship value:</strong> AED <%= total.toLocaleString() %></p>
+
+<h3>Add Sponsor</h3>
+<form method="POST" action="/admin/sponsors">
+  <label>Company: <input name="company" required></label>
+  <label>Tier: <select name="tier"><option>Platinum</option><option>Gold</option><option>Silver</option></select></label>
+  <label>Contact Name: <input name="contact_name"></label>
+  <label>Email: <input type="email" name="email"></label>
+  <label>Phone: <input name="phone"></label>
+  <label>Amount (AED): <input type="number" name="amount" value="25000"></label>
+  <label>Logo URL: <input name="logo_url" placeholder="https://..."></label>
+  <label>Contract Start: <input type="date" name="contract_start"></label>
+  <label>Contract End: <input type="date" name="contract_end"></label>
+  <button type="submit">Add Sponsor</button>
+</form>
+
+<h3>Active Sponsors</h3>
+<div class="member-grid">
+  <% sponsors.forEach(s => { %>
+    <div class="member-card">
+      <div class="member-card-logo">
+        <%- include('member-logo', { m: { company: s.company, logo_url: s.logo_url } }) %>
+      </div>
+      <div class="member-card-info">
+        <strong><%= s.company %></strong>
+        <span class="member-tier"><%= s.tier %></span>
+        <div class="member-card-meta">AED <%= s.amount.toLocaleString() %></div>
+        <div class="member-card-meta"><%= s.contract_start %> → <%= s.contract_end %></div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+<%- include('footer') %>

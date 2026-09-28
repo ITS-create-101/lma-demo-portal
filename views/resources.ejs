@@ -1,0 +1,8 @@
+<%- include('header') %>
+<h2>Resource Library</h2>
+<ul>
+<% resources.forEach(r => { %>
+  <li><strong><%= r.title %></strong> (<%= r.type %>) - <%= r.description %> <a href="<%= r.url %>">Download</a></li>
+<% }) %>
+</ul>
+<%- include('footer') %>

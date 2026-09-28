@@ -1,0 +1,10 @@
+<%- include('header') %>
+<h2>Committees</h2>
+<% committees.forEach(c => { %>
+  <div class="app-card">
+    <div class="app-head"><strong><%= c.name %></strong></div>
+    <p><strong>Chair:</strong> <%= c.chair %></p>
+    <p><strong>Members:</strong> <%= c.members.join(', ') %></p>
+  </div>
+<% }) %>
+<%- include('footer') %>

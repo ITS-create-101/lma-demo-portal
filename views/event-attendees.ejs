@@ -1,0 +1,22 @@
+<%- include('header') %>
+<h2>Attendees — <%= event.title %></h2>
+<p><%= event.date %> · <%= event.location %></p>
+<p><a href="/events">← Back to Events</a></p>
+
+<% if (!attendees.length) { %>
+  <p>No registrations yet.</p>
+<% } else { %>
+  <table>
+    <tr><th>Company</th><th>Contact</th><th>Email</th><th>Phone</th><th>Registered On</th></tr>
+    <% attendees.forEach(a => { %>
+      <tr>
+        <td><%= a.member.company %></td>
+        <td><%= a.member.contact_name %></td>
+        <td><%= a.member.email %></td>
+        <td><%= a.member.phone %></td>
+        <td><%= a.registered_at %></td>
+      </tr>
+    <% }) %>
+  </table>
+<% } %>
+<%- include('footer') %>

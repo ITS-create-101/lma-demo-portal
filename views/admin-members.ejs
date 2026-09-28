@@ -1,0 +1,38 @@
+<%- include('header') %>
+<h2>Admin — Manage Members</h2>
+
+<h3>Add Member</h3>
+<form method="POST" action="/admin/members">
+  <label>Company: <input name="company" required></label>
+  <label>Contact Name: <input name="contact_name" required></label>
+  <label>Email: <input type="email" name="email" required></label>
+  <label>Phone: <input name="phone"></label>
+  <label>Industry: <input name="industry"></label>
+  <label>Tier: <input name="tier"></label>
+  <label>Country: <input name="country"></label>
+  <label>Membership Fee (AED): <input type="number" name="membership_fee" value="5000"></label>
+  <label>Renewal Date: <input type="date" name="renewal_date"></label>
+  <label>Logo URL (optional): <input name="logo_url" placeholder="https://..."></label>
+  <label>Status: <input name="status" value="Active"></label>
+  <button type="submit">Add Member</button>
+</form>
+
+<h3>Members & Logos</h3>
+<div class="member-grid">
+  <% members.forEach(m => { %>
+    <div class="member-card">
+      <div class="member-card-logo">
+        <%- include('member-logo', { m }) %>
+      </div>
+      <div class="member-card-info">
+        <strong><%= m.company %></strong>
+        <span class="member-tier"><%= m.tier %></span>
+        <form method="POST" action="/admin/members/<%= m.id %>/logo" class="logo-form">
+          <input name="logo_url" placeholder="Paste logo URL" value="<%= m.logo_url || '' %>">
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</div>
+<%- include('footer') %>

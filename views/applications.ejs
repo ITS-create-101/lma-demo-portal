@@ -1,0 +1,35 @@
+<%- include('header') %>
+<h2>Membership Applications</h2>
+<% if (!applications.length) { %>
+  <p>No applications yet.</p>
+<% } else { %>
+  <% applications.forEach(a => { %>
+    <div class="app-card">
+      <div class="app-head">
+        <strong><%= a.company %></strong>
+        <span class="badge badge-<%= a.status === 'Pending' ? 'pending' : a.status === 'Approved' ? 'paid' : 'overdue' %>"><%= a.status %></span>
+        <% if (a.eligible) { %><span class="badge badge-paid">Eligible: Full voting rights</span><% } else { %><span class="badge badge-pending">Conditional</span><% } %>
+      </div>
+      <p><strong>Contact:</strong> <%= a.contact_name %> (<%= a.email %>)<br>
+      <strong>Trade License:</strong> <%= a.trade_license || '—' %><br>
+      <strong>Country:</strong> <%= a.country %> · <strong>Industry:</strong> <%= a.industry %><br>
+      <strong>Tier requested:</strong> <%= a.tier %><br>
+      <strong>Submitted:</strong> <%= a.submitted_at %></p>
+      <p><strong>Eligibility:</strong> Industry = <%= a.q_industry %>, License = <%= a.q_license %></p>
+      <% if (a.references && a.references.length) { %>
+        <p><strong>References:</strong></p>
+        <ul>
+          <% a.references.forEach(r => { %>
+            <li><%= r.name %> — <%= r.company %> (<%= r.email %>)</li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <% if (a.bio) { %><p><strong>Bio:</strong> <%= a.bio %></p><% } %>
+      <% if (a.status === 'Pending') { %>
+        <form method="POST" action="/admin/applications/<%= a.id %>/approve" style="display:inline"><button type="submit">Approve</button></form>
+        <form method="POST" action="/admin/applications/<%= a.id %>/reject" style="display:inline"><button type="submit" class="btn-danger">Reject</button></form>
+      <% } %>
+    </div>
+  <% }) %>
+<% } %>
+<%- include('footer') %>

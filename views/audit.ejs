@@ -1,0 +1,9 @@
+<%- include('header') %>
+<h2>Audit Log</h2>
+<table>
+  <tr><th>When</th><th>Actor</th><th>Action</th></tr>
+  <% entries.forEach(e => { %>
+    <tr><td><%= e.at %></td><td><%= e.actor %></td><td><%= e.action %></td></tr>
+  <% }) %>
+</table>
+<%- include('footer') %>

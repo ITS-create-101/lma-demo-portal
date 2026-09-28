@@ -1,0 +1,112 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; color: #222; }
+header { background: #003366; color: white; padding: 1rem 2rem; }
+header h1 { margin: 0; font-size: 1.4rem; }
+nav { margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+nav a { color: #cce6ff; text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+main { padding: 2rem; max-width: 1100px; margin: auto; background: white; min-height: 70vh; }
+table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; font-size: 0.9rem; }
+th { background: #e6f0ff; }
+form label { display: block; margin: 0.5rem 0; }
+input { padding: 0.3rem; width: 100%; max-width: 400px; }
+button { padding: 0.4rem 0.9rem; background: #003366; color: white; border: none; cursor: pointer; border-radius: 4px; font-size: 0.85rem; }
+button:hover { background: #00509e; }
+.error { color: red; }
+.warn { color: #b35900; font-weight: bold; }
+.role-badge { padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.75rem; text-transform: uppercase; background: #00509e; color: white; }
+.role-admin { background: #7a1f1f; }
+.role-board { background: #6b4d00; }
+.role-finance { background: #1f5c2e; }
+.role-committee { background: #4d2a80; }
+.role-member { background: #00509e; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.stat { background: #f0f6ff; border-left: 4px solid #003366; padding: 1rem; border-radius: 4px; }
+.stat-num { font-size: 1.4rem; font-weight: bold; color: #003366; }
+.stat-label { color: #555; font-size: 0.85rem; margin-top: 0.25rem; }
+.badge { padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.75rem; font-weight: bold; }
+.badge-paid { background: #d4edda; color: #155724; }
+.badge-pending { background: #fff3cd; color: #856404; }
+.badge-overdue { background: #f8d7da; color: #721c24; }
+.chart-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 1rem; }
+.chart-box { background: #fafbfc; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem; }
+.chart-box h3 { margin-top: 0; color: #003366; }
+canvas { max-height: 300px; }
+
+.brand-row { display: flex; align-items: center; gap: 1rem; }
+.brand-logo { height: 44px; width: auto; background: white; border-radius: 4px; padding: 3px; }
+.header, header { padding: 1rem 2rem; }
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.member-card:hover { box-shadow: 0 4px 14px rgba(0,51,102,0.10); transform: translateY(-1px); }
+
+.member-card-logo { flex: 0 0 56px; height: 56px; display: flex; align-items: center; justify-content: center; }
+
+.member-logo {
+  max-width: 56px;
+  max-height: 56px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #f4f6f8;
+}
+
+.member-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.member-card-info { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.member-card-info strong { color: #003366; }
+.member-card-meta { font-size: 0.82rem; color: #555; }
+.member-tier {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+  background: #e6f0ff;
+  color: #003366;
+  width: fit-content;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+.filter-bar input[type="text"] { flex: 1 1 200px; }
+.filter-bar select { flex: 0 1 160px; }
+.filter-bar button { flex: 0 0 auto; }
+
+.logo-form { display: flex; gap: 0.3rem; margin-top: 0.4rem; }
+.logo-form input { flex: 1; padding: 0.25rem; font-size: 0.8rem; }
+.logo-form button { padding: 0.25rem 0.5rem; font-size: 0.8rem; }

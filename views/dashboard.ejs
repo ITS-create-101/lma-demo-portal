@@ -1,0 +1,39 @@
+<%- include('header') %>
+<h2>Dashboard</h2>
+
+<% if (['admin','board','finance'].includes(role)) { %>
+  <h3>Overview</h3>
+  <div class="stat-grid">
+    <div class="stat"><div class="stat-num"><%= stats.members %></div><div class="stat-label">Members</div></div>
+    <div class="stat"><div class="stat-num"><%= stats.events %></div><div class="stat-label">Events</div></div>
+    <div class="stat"><div class="stat-num"><%= stats.registrations %></div><div class="stat-label">Registrations</div></div>
+    <div class="stat"><div class="stat-num">AED <%= stats.revenue.toLocaleString() %></div><div class="stat-label">Revenue (Paid)</div></div>
+    <div class="stat"><div class="stat-num">AED <%= stats.pending.toLocaleString() %></div><div class="stat-label">Outstanding</div></div>
+  </div>
+<% } %>
+
+<% if (upcomingRenewals && upcomingRenewals.length && ['admin','finance'].includes(role)) { %>
+  <h3>Upcoming Renewals</h3>
+  <table>
+    <tr><th>Company</th><th>Tier</th><th>Renewal Date</th><th>Days Left</th></tr>
+    <% upcomingRenewals.forEach(m => { %>
+      <tr>
+        <td><%= m.company %></td>
+        <td><%= m.tier %></td>
+        <td><%= m.renewal_date %></td>
+        <td class="<%= m.days < 30 ? 'warn' : '' %>"><%= m.days %> days</td>
+      </tr>
+    <% }) %>
+  </table>
+<% } %>
+
+<% if (member) { %>
+  <h3>Your Profile</h3>
+  <p>Company: <%= member.company %></p>
+  <p>Contact: <%= member.contact_name %></p>
+  <p>Email: <%= member.email %></p>
+  <p>Tier: <%= member.tier %></p>
+  <p>Status: <%= member.status %></p>
+  <p>Renewal: <%= member.renewal_date %></p>
+<% } %>
+<%- include('footer') %>

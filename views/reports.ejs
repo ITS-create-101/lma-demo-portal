@@ -1,0 +1,43 @@
+<%- include('header') %>
+<h2>Reports</h2>
+
+<div class="chart-grid">
+  <div class="chart-box">
+    <h3>Membership Growth (Cumulative)</h3>
+    <canvas id="growthChart"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>Revenue by Month (AED)</h3>
+    <canvas id="revenueChart"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>Members by Tier</h3>
+    <canvas id="tierChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const growthLabels = <%- growthLabels %>;
+  const growthData = <%- growthData %>;
+  const revenueLabels = <%- revenueLabels %>;
+  const revenueData = <%- revenueData %>;
+  const tierLabels = <%- tierLabels %>;
+  const tierData = <%- tierData %>;
+
+  new Chart(document.getElementById('growthChart'), {
+    type: 'line',
+    data: { labels: growthLabels, datasets: [{ label: 'Members', data: growthData, borderColor: '#003366', backgroundColor: 'rgba(0,51,102,0.1)', fill: true, tension: 0.3 }] }
+  });
+
+  new Chart(document.getElementById('revenueChart'), {
+    type: 'bar',
+    data: { labels: revenueLabels, datasets: [{ label: 'AED', data: revenueData, backgroundColor: '#00509e' }] }
+  });
+
+  new Chart(document.getElementById('tierChart'), {
+    type: 'doughnut',
+    data: { labels: tierLabels, datasets: [{ data: tierData, backgroundColor: ['#003366', '#00509e', '#4d94ff', '#99c2ff', '#cce6ff'] }] }
+  });
+</script>
+<%- include('footer') %>

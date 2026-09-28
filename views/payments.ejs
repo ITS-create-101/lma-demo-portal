@@ -1,0 +1,33 @@
+<%- include('header') %>
+<h2>Payments & Invoices</h2>
+
+<div class="stat-grid">
+  <div class="stat"><div class="stat-num">AED <%= totals.paid.toLocaleString() %></div><div class="stat-label">Paid</div></div>
+  <div class="stat"><div class="stat-num">AED <%= totals.pending.toLocaleString() %></div><div class="stat-label">Pending</div></div>
+  <div class="stat"><div class="stat-num">AED <%= totals.overdue.toLocaleString() %></div><div class="stat-label">Overdue</div></div>
+</div>
+
+<table>
+  <tr><th>Invoice #</th><th>Member</th><th>Description</th><th>Amount</th><th>Issued</th><th>Paid</th><th>Status</th><th>Action</th></tr>
+  <% invoices.forEach(i => { %>
+    <tr>
+      <td>INV-<%= String(i.id).padStart(4, '0') %></td>
+      <td><%= i.member ? i.member.company : 'Unknown' %></td>
+      <td><%= i.description %></td>
+      <td>AED <%= i.amount.toLocaleString() %></td>
+      <td><%= i.issued_date %></td>
+      <td><%= i.paid_date || '—' %></td>
+      <td>
+        <span class="badge badge-<%= i.status.toLowerCase() %>"><%= i.status %></span>
+      </td>
+      <td>
+        <% if (i.status !== 'Paid') { %>
+          <form method="POST" action="/admin/payments/<%= i.id %>/pay" style="display:inline">
+            <button type="submit">Mark Paid</button>
+          </form>
+        <% } %>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+<%- include('footer') %>

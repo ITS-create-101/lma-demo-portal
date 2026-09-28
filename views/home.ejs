@@ -1,0 +1,11 @@
+<%- include('header') %>
+<h2>Welcome to LMA MENA</h2>
+<p>Demo member portal and CRM.</p>
+<h3>Upcoming Events</h3>
+<ul>
+<% events.forEach(e => { %>
+  <li><strong><%= e.title %></strong> - <%= e.date %> at <%= e.location %></li>
+<% }) %>
+</ul>
+<% if (!user) { %><p><a href="/login">Login to access the member portal</a></p><% } %>
+<%- include('footer') %>

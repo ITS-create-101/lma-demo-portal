@@ -1,0 +1,39 @@
+<%- include('header') %>
+<h2>Renewal Reminders</h2>
+
+<h3>Upcoming Renewals</h3>
+<table>
+  <tr><th>Company</th><th>Tier</th><th>Renewal Date</th><th>Days Left</th><th>Action</th></tr>
+  <% members.forEach(m => { %>
+    <tr>
+      <td><%= m.company %></td>
+      <td><%= m.tier %></td>
+      <td><%= m.renewal_date %></td>
+      <td class="<%= m.days < 30 ? 'warn' : '' %>"><%= m.days %> days</td>
+      <td>
+        <form method="POST" action="/admin/renewals/<%= m.id %>/remind" style="display:inline">
+          <button type="submit">Send Reminder</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<h3>Reminder Log</h3>
+<% if (!reminders.length) { %>
+  <p>No reminders sent yet.</p>
+<% } else { %>
+  <table>
+    <tr><th>Member</th><th>Type</th><th>Sent</th><th>Status</th></tr>
+    <% reminders.forEach(r => { %>
+      <% const m = members.find(x => x.id === r.member_id); %>
+      <tr>
+        <td><%= m ? m.company : 'Unknown' %></td>
+        <td><%= r.type %></td>
+        <td><%= r.sent_at %></td>
+        <td><span class="badge badge-paid"><%= r.status %></span></td>
+      </tr>
+    <% }) %>
+  </table>
+<% } %>
+<%- include('footer') %>

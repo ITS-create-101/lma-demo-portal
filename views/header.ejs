@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LMA MENA Demo Portal</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/logos/lma-logo.png">
+</head>
+<body>
+  <header>
+    <div class="brand-row">
+      <img src="/logos/lma-logo.png" alt="LMA MENA" class="brand-logo">
+      <h1>LMA MENA Demo Portal</h1>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <% if (user) { %>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/members">Members</a>
+        <a href="/events">Events</a>
+        <a href="/resources">Resources</a>
+        <a href="/committees">Committees</a>
+        <% if (user.role === 'admin') { %>
+          <a href="/admin/members">Admin Members</a>
+          <a href="/admin/applications">Applications</a>
+          <a href="/admin/campaigns">Campaigns</a>
+          <a href="/admin/audit">Audit Log</a>
+        <% } %>
+        <% if (['admin','finance'].includes(user.role)) { %>
+          <a href="/admin/renewals">Renewals</a>
+          <a href="/admin/payments">Payments</a>
+        <% } %>
+        <% if (['admin','board','finance'].includes(user.role)) { %>
+          <a href="/admin/reports">Reports</a>
+        <% } %>
+        <% if (['admin','board'].includes(user.role)) { %>
+          <a href="/admin/sponsors">Sponsors</a>
+        <% } %>
+        <span class="role-badge role-<%= user.role %>"><%= user.role %></span>
+        <span>Welcome, <%= user.name %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/apply">Become a Member</a>
+      <% } %>
+    </nav>
+  </header>
+  <main>

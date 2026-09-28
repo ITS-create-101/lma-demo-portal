@@ -1,0 +1,41 @@
+<%- include('header') %>
+<h2><%= member.company %></h2>
+<p><a href="/members">← Back to directory</a></p>
+<div class="two-col">
+  <div>
+    <h3>Profile</h3>
+    <p><strong>Contact:</strong> <%= member.contact_name %></p>
+    <p><strong>Email:</strong> <%= member.email %></p>
+    <p><strong>Phone:</strong> <%= member.phone %></p>
+    <p><strong>Industry:</strong> <%= member.industry %></p>
+    <p><strong>Tier:</strong> <%= member.tier %></p>
+    <p><strong>Country:</strong> <%= member.country %></p>
+    <p><strong>Status:</strong> <%= member.status %></p>
+    <p><strong>Joined:</strong> <%= member.joined_date %></p>
+    <p><strong>Renewal:</strong> <%= member.renewal_date %></p>
+    <p><strong>Website:</strong> <a href="<%= member.website %>" target="_blank"><%= member.website %></a></p>
+    <p><strong>About:</strong> <%= member.description %></p>
+  </div>
+  <div>
+    <h3>Invoices</h3>
+    <table>
+      <tr><th>Invoice</th><th>Amount</th><th>Status</th></tr>
+      <% invoices.forEach(i => { %>
+        <tr><td>INV-<%= String(i.id).padStart(4, '0') %></td><td>AED <%= i.amount.toLocaleString() %></td><td><span class="badge badge-<%= i.status.toLowerCase() %>"><%= i.status %></span></td></tr>
+      <% }) %>
+    </table>
+    <h3>Event History</h3>
+    <% if (!registrations.length) { %><p>No event registrations.</p><% } else { %>
+      <ul>
+        <% registrations.forEach(r => { %><li><%= r.event ? r.event.title : 'Event #' + r.event_id %> — registered <%= r.registered_at %></li><% }) %>
+      </ul>
+    <% } %>
+    <h3>Reminder History</h3>
+    <% if (!reminders.length) { %><p>No reminders sent.</p><% } else { %>
+      <ul>
+        <% reminders.forEach(r => { %><li><%= r.type %> — <%= r.sent_at %></li><% }) %>
+      </ul>
+    <% } %>
+  </div>
+</div>
+<%- include('footer') %>

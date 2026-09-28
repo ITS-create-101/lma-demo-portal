@@ -1,0 +1,15 @@
+<% 
+  const initials = (m.company || '?')
+    .split(/\s+/)
+    .slice(0, 2)
+    .map(w => w[0])
+    .join('')
+    .toUpperCase();
+  const colors = ['#003366', '#00509e', '#1f5c2e', '#6b4d00', '#4d2a80', '#7a1f1f'];
+  const color = colors[(m.company || '').length % colors.length];
+%>
+<% if (m.logo_url) { %>
+  <img src="<%= m.logo_url %>" alt="<%= m.company %>" class="member-logo">
+<% } else { %>
+  <span class="member-logo-placeholder" style="background:<%= color %>"><%= initials %></span>
+<% } %>

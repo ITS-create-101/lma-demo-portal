@@ -1,0 +1,44 @@
+<%- include('header') %>
+<h2>Member Directory</h2>
+
+<form method="GET" action="/members" class="filter-bar">
+  <input type="text" name="q" placeholder="Search company, contact, email…" value="<%= q %>">
+  <select name="tier">
+    <option value="">All tiers</option>
+    <% tiers.forEach(t => { %>
+      <option value="<%= t %>" <%= tier === t ? 'selected' : '' %>><%= t %></option>
+    <% }) %>
+  </select>
+  <select name="industry">
+    <option value="">All industries</option>
+    <% industries.forEach(i => { %>
+      <option value="<%= i %>" <%= industry === i ? 'selected' : '' %>><%= i %></option>
+    <% }) %>
+  </select>
+  <select name="country">
+    <option value="">All countries</option>
+    <% countries.forEach(c => { %>
+      <option value="<%= c %>" <%= country === c ? 'selected' : '' %>><%= c %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Filter</button>
+</form>
+
+<div class="member-grid">
+  <% members.forEach(m => { %>
+    <a class="member-card" href="/members/<%= m.id %>">
+      <div class="member-card-logo">
+        <%- include('member-logo', { m }) %>
+      </div>
+      <div class="member-card-info">
+        <strong><%= m.company %></strong>
+        <span class="member-tier tier-<%= m.tier.toLowerCase() %>"><%= m.tier %></span>
+        <div class="member-card-meta"><%= m.contact_name %></div>
+        <div class="member-card-meta"><%= m.industry %> · <%= m.country %></div>
+      </div>
+    </a>
+  <% }) %>
+</div>
+
+<% if (!members.length) { %><p>No members match your filter.</p><% } %>
+<%- include('footer') %>

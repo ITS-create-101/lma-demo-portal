@@ -1,0 +1,17 @@
+<%- include('header') %>
+<h2>Login</h2>
+<% if (error) { %><p class="error"><%= error %></p><% } %>
+<form method="POST" action="/login">
+  <label>Email: <input type="email" name="email" required></label>
+  <label>Password: <input type="password" name="password" required></label>
+  <button type="submit">Login</button>
+</form>
+<p><strong>Demo accounts</strong> (password: <code>password123</code>):</p>
+<ul>
+  <li>admin@lma.com — full access</li>
+  <li>board@lma.com — board view + reports</li>
+  <li>finance@lma.com — renewals + payments + reports</li>
+  <li>committee@lma.com — events attendees</li>
+  <li>member@lma.com — member portal</li>
+</ul>
+<%- include('footer') %>
