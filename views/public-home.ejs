@@ -1,0 +1,108 @@
+<%- include('public-header', { title: 'Home' }) %>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Shaping the Future of Leisure Marine in MENA</h1>
+    <p class="hero-sub">LMA MENA unites marinas, yacht builders, service providers, and marine businesses across the Middle East and North Africa.</p>
+    <div class="hero-actions">
+      <a href="/apply" class="pub-btn pub-btn-primary">Become a Member</a>
+      <a href="/about" class="pub-btn pub-btn-ghost">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="pub-section">
+  <div class="container">
+    <h2 class="section-title">Why Join LMA MENA</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="feature-icon">⚓</div>
+        <h3>Industry Network</h3>
+        <p>Connect with marinas, shipyards, brokers, suppliers, and service providers across the region.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📢</div>
+        <h3>Advocacy &amp; Voice</h3>
+        <p>Full voting rights and eligibility to stand for the board or committees.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌊</div>
+        <h3>Events &amp; Access</h3>
+        <p>Attend the Annual Marine Expo, member-only networking nights, and regional forums.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📈</div>
+        <h3>Market Visibility</h3>
+        <p>Featured in the members directory, newsletter, and website — with the right to use the LMA logo.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📚</div>
+        <h3>Resources</h3>
+        <p>Industry reports, regulatory updates, and practical guides for marine businesses.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <h3>Committees</h3>
+        <p>Participate in Events, Membership, and Marketing committees that steer the Association.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pub-section pub-section-alt">
+  <div class="container">
+    <h2 class="section-title">Featured Members</h2>
+    <div class="pub-member-grid">
+      <% featuredMembers.forEach(m => { %>
+        <div class="pub-member-card">
+          <div class="pub-member-logo">
+            <% if (m.logo_url) { %>
+              <img src="<%= m.logo_url %>" alt="<%= m.company %>">
+            <% } else { %>
+              <span class="pub-member-initials"><%= m.company.split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase() %></span>
+            <% } %>
+          </div>
+          <strong><%= m.company %></strong>
+          <span class="pub-member-meta"><%= m.industry %> · <%= m.country %></span>
+        </div>
+      <% }) %>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="/public-members" class="pub-btn">View All Members</a>
+    </div>
+  </div>
+</section>
+
+<section class="pub-section">
+  <div class="container">
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="event-grid">
+      <% upcomingEvents.forEach(e => { %>
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day"><%= new Date(e.date).getDate() %></span>
+            <span class="event-month"><%= new Date(e.date).toLocaleString('en', { month: 'short' }) %></span>
+          </div>
+          <div class="event-info">
+            <h3><%= e.title %></h3>
+            <p class="event-loc">📍 <%= e.location %></p>
+            <p><%= e.description %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="/public-events" class="pub-btn">All Events</a>
+    </div>
+  </div>
+</section>
+
+<section class="pub-cta">
+  <div class="container">
+    <h2>Ready to Join the Association?</h2>
+    <p>Applications are reviewed by our Membership Committee. Full voting rights and the ability to stand for election are available to qualifying members.</p>
+    <a href="/apply" class="pub-btn pub-btn-primary pub-btn-large">Apply for Membership</a>
+  </div>
+</section>
+
+<%- include('public-footer') %>

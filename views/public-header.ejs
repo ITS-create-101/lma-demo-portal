@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= typeof title !== 'undefined' ? title + ' — LMA MENA' : 'LMA MENA' %></title>
+  <link rel="stylesheet" href="/public.css">
+  <link rel="icon" href="/logos/lma-logo.png">
+</head>
+<body class="public">
+
+<header class="pub-nav">
+  <div class="pub-nav-inner">
+    <a href="/" class="pub-brand">
+      <img src="/logos/lma-logo.png" alt="LMA MENA" class="pub-brand-logo">
+    </a>
+    <nav class="pub-links">
+      <a href="/about">About</a>
+      <a href="/public-members">Members</a>
+      <a href="/public-events">Events</a>
+      <a href="/contact">Contact</a>
+      <% if (user) { %>
+        <a href="/dashboard" class="pub-btn">Go to Portal</a>
+      <% } else { %>
+        <a href="/login" class="pub-btn">Member Login</a>
+      <% } %>
+    </nav>
+  </div>
+</header>

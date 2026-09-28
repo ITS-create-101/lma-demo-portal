@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(session({ secret: 'demo-secret', resave: false, saveUninitialized: false }));
+app.use((req, res, next) => { res.locals.user = req.session.user || null; next(); });
 
 function loadData() {
   if (!fs.existsSync(DATA_FILE)) return seedData();
@@ -85,8 +86,24 @@ function logAudit(action, actor) {
   saveData(db);
 }
 
-app.use((req, res, next) => { res.locals.user = req.session.user || null; next(); });
-function requireLogin(req, res, next) { if (!req.session.user) return res.redirect('/login'); next(); }
+app.get('/', (req, res) => {
+  res.render('public-home', {
+    featuredMembers: db.members.slice(0, 4),
+    upcomingEvents: db.events.slice(0, 3)
+  });
+});
+
+app.get('/about', (req, res) => res.render('public-about', { committees: db.committees }));
+app.get('/public-members', (req, res) => res.render('public-members', { members: db.members }));
+app.get('/public-events', (req, res) => res.render('public-events', { events: db.events }));
+app.get('/contact', (req, res) => res.render('public-contact', { sent: req.query.sent === '1' }));
+app.post('/contact', (req, res) => {
+  db.contacts = db.contacts || [];
+  db.contacts.push({ id: db.contacts.length + 1, name: req.body.name, email: req.body.email, company: req.body.company, message: req.body.message, at: new Date().toISOString() });
+  saveData(db);
+  logAudit('Contact form: ' + req.body.email, req.body.email);
+  res.redirect('/contact?sent=1');
+});function requireLogin(req, res, next) { if (!req.session.user) return res.redirect('/login'); next(); }
 function requireRole(roles) {
   return (req, res, next) => {
     if (!req.session.user) return res.redirect('/login');

@@ -1,0 +1,41 @@
+<%- include('public-header', { title: 'About' }) %>
+
+<section class="pub-page-header">
+  <div class="container">
+    <h1>About LMA MENA</h1>
+    <p>The Leisure Marine Association for the Middle East &amp; North Africa</p>
+  </div>
+</section>
+
+<section class="pub-section">
+  <div class="container">
+    <h2>Our Mission</h2>
+    <p>LMA MENA promotes the growth and professionalism of the leisure marine industry across the region — bringing together marinas, boat builders, brokers, equipment suppliers, service providers, and marine tourism operators under a single representative body.</p>
+
+    <h2>What We Do</h2>
+    <ul class="pub-list">
+      <li>Represent the industry in front of regulators and government bodies</li>
+      <li>Host events, expos, and networking forums</li>
+      <li>Publish industry reports and market intelligence</li>
+      <li>Facilitate partnerships between members</li>
+      <li>Promote marine tourism across MENA</li>
+      <li>Support education and workforce development in the marine sector</li>
+    </ul>
+
+    <h2>Governance</h2>
+    <p>The Association is managed by an Executive Manager and supported by a Board of Directors consisting of voluntary marine industry professionals. Members with full voting rights may stand for election to the board or committees.</p>
+
+    <h2>Committees</h2>
+    <div class="feature-grid">
+      <% committees.forEach(c => { %>
+        <div class="feature">
+          <h3><%= c.name %></h3>
+          <p><strong>Chair:</strong> <%= c.chair %></p>
+          <p><strong>Members:</strong> <%= c.members.join(', ') %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('public-footer') %>

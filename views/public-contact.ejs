@@ -1,0 +1,33 @@
+<%- include('public-header', { title: 'Contact' }) %>
+
+<section class="pub-page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+  </div>
+</section>
+
+<section class="pub-section">
+  <div class="container pub-two-col">
+    <div>
+      <h2>Get in Touch</h2>
+      <% if (sent) { %><p class="pub-ok">✅ Thank you — we'll respond within 2 business days.</p><% } %>
+      <form method="POST" action="/contact" class="pub-form">
+        <label>Name: <input name="name" required></label>
+        <label>Email: <input type="email" name="email" required></label>
+        <label>Company: <input name="company"></label>
+        <label>Message: <textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" class="pub-btn pub-btn-primary">Send Message</button>
+      </form>
+    </div>
+    <div>
+      <h2>Association Office</h2>
+      <p><strong>Email:</strong><br>executivemanager@leisuremarinemena.com</p>
+      <p><strong>Region:</strong><br>Middle East &amp; North Africa</p>
+      <p><strong>Country:</strong><br>United Arab Emirates</p>
+      <h3 style="margin-top:2rem">Membership Enquiries</h3>
+      <p>For membership questions, please use the <a href="/apply">application form</a>, or email the Association office directly.</p>
+    </div>
+  </div>
+</section>
+
+<%- include('public-footer') %>

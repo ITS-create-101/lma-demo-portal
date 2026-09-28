@@ -1,0 +1,31 @@
+<%- include('public-header', { title: 'Events' }) %>
+
+<section class="pub-page-header">
+  <div class="container">
+    <h1>Events</h1>
+    <p>Networking, expos, and member forums</p>
+  </div>
+</section>
+
+<section class="pub-section">
+  <div class="container">
+    <% events.forEach(e => { %>
+      <div class="event-card event-card-large">
+        <div class="event-date">
+          <span class="event-day"><%= new Date(e.date).getDate() %></span>
+          <span class="event-month"><%= new Date(e.date).toLocaleString('en', { month: 'short' }) %></span>
+        </div>
+        <div class="event-info">
+          <h3><%= e.title %></h3>
+          <p class="event-loc">📍 <%= e.location %></p>
+          <p><%= e.description %></p>
+          <p style="margin-top:1rem">
+            <a href="/login" class="pub-btn pub-btn-primary">Member Registration</a>
+          </p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('public-footer') %>
